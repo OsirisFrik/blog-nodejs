@@ -1,0 +1,31 @@
+{
+  "name": "blog-nodejs",
+  "version": "1.0.0",
+  "description": "blog system in Node js",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OsirisFrik/blog-nodejs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "node",
+    "js",
+    "javascript",
+    "blog"
+  ],
+  "author": "OsirisFrik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OsirisFrik/blog-nodejs/issues"
+  },
+  "homepage": "https://github.com/OsirisFrik/blog-nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "mongoose": "^4.12.0"
+  }
+}
