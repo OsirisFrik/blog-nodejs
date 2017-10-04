@@ -8,6 +8,9 @@ const exVal = require('express-validator');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -18,15 +21,16 @@ const index = require('./routes/index');
 // bodyParser
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Controll-Allow-Headers', '*');
-  res.header('Access-Controll-Allow-Methos', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+app.use(session({
+  secret: 'sdhjfsdkjfhlsdfjkls',
+  resave: false,
+  saveUninitialized: false
+}));
 
-  next();
-});
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Express Validator
 app.use(exVal({
@@ -49,7 +53,6 @@ var getModules = express.static(path.join(__dirname, 'node_modules'));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', exphbs({
   defaultLayout: 'layout',
-  //layoutsDir: "bot/views/layouts",
   extname: '.html'
 }));
 app.set('view engine', '.html');
@@ -65,6 +68,12 @@ handlebars.registerHelper('repeat', function(item) {
     '<th>'+item[name].age+'</th>';
   }
   return out + '</tr>';
+});
+
+app.use(function (req, res, next) {
+  res.locals.userInfo = req.user || null;
+  res.locals.blogName = 'OsirisFrik';
+  next();
 });
 
 app.use('/', index);

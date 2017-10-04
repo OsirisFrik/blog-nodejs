@@ -14,7 +14,8 @@ var user = Schema({
   avatar: String,
   twitter: String,
   facebook: String,
-  github: String
+  github: String,
+  admin: Boolean
 });
 
 user.plugin(mongoosePaginate);

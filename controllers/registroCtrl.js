@@ -23,8 +23,9 @@ registroCtrl.reg = function(req, res) {
     newUser.last_name = userData.last_name;
     newUser.email = userData.email;
     newUser.twitter = userData.twitter;
-    userData.facebook = userData.facebook;
-    userData.github = userData.github;
+    newUser.facebook = userData.facebook;
+    newUser.github = userData.github;
+    newUser.admin = false;
 
     console.log(userData);
 
