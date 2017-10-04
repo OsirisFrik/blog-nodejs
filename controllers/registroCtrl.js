@@ -25,7 +25,7 @@ registroCtrl.reg = function(req, res) {
     newUser.twitter = userData.twitter;
     newUser.facebook = userData.facebook;
     newUser.github = userData.github;
-    newUser.admin = false;
+    newUser.admin = true;
 
     console.log(userData);
 

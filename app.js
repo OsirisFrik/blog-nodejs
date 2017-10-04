@@ -11,12 +11,24 @@ const handlebars = require('handlebars');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
-const port = process.env.PORT || 3000;
+const portfinder = require('portfinder');
+
+var port = process.env.PORT || 3000;
+
+portfinder.getPort({port: port}, function (err, findPort) {
+  if (err) {
+    console.error(colors.red(err));
+  }
+  if (findPort) {
+    port = findPort;
+  }
+})
 
 const app = express();
 const mongoConnect = "mongodb://localhost:27017/blog";
 
 const index = require('./routes/index');
+const admin = require('./routes/admin');
 
 // bodyParser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -52,6 +64,7 @@ var getModules = express.static(path.join(__dirname, 'node_modules'));
 // handlebars config
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', exphbs({
+  partialsDir: 'views/partials',
   defaultLayout: 'layout',
   extname: '.html'
 }));
@@ -77,6 +90,15 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', index);
+app.use('/admin', function (req, res, next) {
+  if (req.session.passport && req.session.passport.user && req.session.passport.user.admin) {
+    next();
+  } else if (req.session.passport && req.session.passport.user && !req.session.passport.user.admin) {
+    res.redirect('/');
+  } else {
+    res.redirect('/login?backTo=/admin');
+  }
+}, admin);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoConnect, {

@@ -30,7 +30,7 @@ passport.use(new LocalStrategy(
       }
       if (matchPassword(password, user.password)) {
         return done(null, false, { message: 'Incorrect password.' });
-      }      
+      }
       return done(null, user);
     });
   }
@@ -48,12 +48,10 @@ passport.deserializeUser(function(user, done) {
 route.get('/', indexCtrl.home);
 route.post('/registro', registroCtrl.reg)
 route.get('/login', indexCtrl.login);
-route.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
+route.post('/login', passport.authenticate('local'), indexCtrl.loginCall);
 route.get('/test', function (req, res) {
   res.send(req.session.passport)
-})
+});
+route.get('/logout', indexCtrl.logOut);
 
 module.exports = route;
