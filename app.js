@@ -14,6 +14,8 @@ const passport = require('passport');
 const portfinder = require('portfinder');
 const flash = require('connect-flash');
 
+const mainConfig = require('./configFiles/mainConfig.json');
+
 var port = process.env.PORT || 3000;
 
 portfinder.getPort({
@@ -28,7 +30,7 @@ portfinder.getPort({
 })
 
 const app = express();
-const mongoConnect = "mongodb://localhost:27017/blog";
+const mongoConnect = 'mongodb://' + mainConfig.mongo_user + ':' + mainConfig.mongo_pws + '@' + mainConfig.mongo_uri + ':' + mainConfig.mongo_port + '/' + mainConfig.mongo_db;
 
 const index = require('./routes/index');
 const admin = require('./routes/admin');
@@ -60,6 +62,7 @@ app.use(exVal({
 
 var getPublic = express.static(path.join(__dirname, 'public'));
 var getModules = express.static(path.join(__dirname, 'node_modules'));
+var getBower = express.static(path.join(__dirname, 'bower_components'));
 
 // handlebars config
 app.set('views', path.join(__dirname, 'views'));
@@ -67,7 +70,7 @@ app.engine('.html', exphbs({partialsDir: 'views/partials', defaultLayout: 'layou
 app.set('view engine', '.html');
 
 // set static folder
-app.use(getPublic, getModules);
+app.use(getPublic, getModules, getBower);
 
 app.use(function(req, res, next) {
   res.locals.userInfo = req.user || null;
@@ -88,21 +91,12 @@ handlebars.registerHelper('repeat', function(item) {
 
 handlebars.registerHelper('alertMsg', function(message, type) {
   console.log(message, type);
-  var script = '<script>noty({theme:"urban-noty",text:"'+message+'",type:"'+type+'",timeout:10000,layout:"topRight",closeWith:["button","click"],animation:{open:"in",close:"out",easing:"swing"}});<\/script>'
+  var script = '<script>noty({theme:"urban-noty",text:"'+message+'",type:"'+type+'",timeout:8000,layout:"topRight",closeWith:["button","click"],animation:{open:"In",close:"out",easing:"fade"}});<\/script>'
   return script
 });
 
 app.use('/', index);
-app.use('/admin', function(req, res, next) {
-  if (req.session.passport && req.session.passport.user && req.session.passport.user.admin) {
-    next();
-  } else if (req.session.passport && req.session.passport.user && !req.session.passport.user.admin) {
-    req.flash('error', 'No tienes autorización');
-    res.redirect('/');
-  } else {
-    res.redirect('/login?backTo=/admin');
-  }
-}, admin);
+app.use('/admin', admin);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoConnect, {

@@ -1,0 +1,27 @@
+{
+  "name": "blog-nodejs",
+  "description": "blog system in Node js",
+  "main": "app.js",
+  "authors": [
+    "OsirisFrik"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "node",
+    "js",
+    "javascript",
+    "blog"
+  ],
+  "homepage": "https://github.com/OsirisFrik/blog-nodejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "remarkable-bootstrap-notify": "^3.1.3"
+  }
+}

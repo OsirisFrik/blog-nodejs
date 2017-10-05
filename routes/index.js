@@ -15,11 +15,10 @@ var route = express.Router();
 var matchPassword = function(password, userPassword) {
   return new Promise(function(resolve, reject) {
     bcrypt.compare(password, userPassword, function(err, isMatch) {
-      if (!err) {
-        resolve(isMatch);
-      } else {
-        reject(err);
+      if (err) {
+        reject(err)
       }
+      resolve(isMatch);
     });
   });
 }
@@ -46,9 +45,8 @@ passport.use(new LocalStrategy({
     matchPassword(password, user.password).then(function(response) {
       if (!response) {
         return done(null, false, {message: 'Incorrect password.'});
-      } else {
-        return done(null, user);
       }
+      return done(null, user);
     }).catch(function(err) {
       console.log(colors.red(err));
       return done(null, false, {message: 'Ha ocurrido un error interno.'})
@@ -76,5 +74,6 @@ route.get('/test', function(req, res) {
   res.send(req.session.passport)
 });
 route.get('/logout', indexCtrl.logOut);
+route.get('/confirm', registroCtrl.confirm)
 
 module.exports = route;

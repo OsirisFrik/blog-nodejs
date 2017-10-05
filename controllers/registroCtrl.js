@@ -152,4 +152,40 @@ registroCtrl.reg = function(req, res) {
   }
 }
 
+registroCtrl.confirm = function (req, res) {
+  var idHash = req.query.ref;
+  if (!req.user) {
+    res.redirect('/login?backTo='+req.url)
+  } else {
+    console.log(req.user._id);
+    var userId = req.user._id;
+    bcrypt.compare(req.user._id, idHash, function (err, isMatch) {
+      if (err) {
+        console.log(colors.magenta(err));
+        req.flash('error', 'Ha ocurrido un error interno.');
+        res.redirect('/');
+      }
+      if (isMatch) {
+        userModel.findOneAndUpdate({_id: req.user._id}, {emailConfirm: true}, (err, user) => {
+          if (err) {
+            console.log(colors.red(err));
+            req.flash('error', 'Ha ocurrido un error.');
+            res.redirect('/');
+          }
+          if (!user) {
+            console.log('error de usuario'.red);
+            req.flash('error', 'No se ha encontrado al usuario.');
+            res.redirect('/');
+          }
+          req.flash('successMsg', 'Se a confirmado tu correo.');
+          res.redirect('/');
+        })
+      } else {
+        req.flash('error', 'Clave de referencia no coincide.');
+        res.redirect('/');
+      }
+    });
+  }
+}
+
 module.exports = registroCtrl;

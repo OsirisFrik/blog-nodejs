@@ -5,7 +5,6 @@ var indexCtrl = {}
 var backTo = null;
 
 indexCtrl.home = function (req, res) {
-  console.log(res.locals);
   res.render('home', {title: 'Home'});
 }
 
