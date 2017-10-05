@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{title}} | Admin Dashboard | {{blogName}}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- page level plugin styles -->
+  <link rel="stylesheet" href="styles/climacons-font.css">
+  <link rel="stylesheet" href="vendor/rickshaw/rickshaw.min.css">
+  <!-- /page level plugin styles -->
+
+  <!-- build:css({.tmp,app}) styles/app.min.css -->
+  <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+  <link rel="stylesheet" href="styles/roboto.css">
+  <link rel="stylesheet" href="styles/font-awesome.css">
+  <link rel="stylesheet" href="styles/panel.css">
+  <link rel="stylesheet" href="styles/feather.css">
+  <link rel="stylesheet" href="styles/animate.css">
+  <link rel="stylesheet" href="styles/urban.css">
+  <link rel="stylesheet" href="styles/urban.skins.css">
+  <!-- endbuild -->
+
+</head>
+
+<body>
+  <div class="app layout-fixed-header">
+
+    <!-- sidebar panel -->
+    {{> admin/menu}}
+    <!-- /sidebar panel -->
+
+    <!-- content panel -->
+    <div class="main-panel">
+
+      <!-- top header -->
+      {{> admin/header}}
+      <!-- /top header -->
+
+      <!-- main area -->
+      <div class="main-content">
+        {{{body}}}
+      </div>
+      <!-- /main area -->
+    </div>
+    <!-- /content panel -->
+
+    <!-- bottom footer -->
+    {{> admin/footer}}
+    <!-- /bottom footer -->
+  </div>
+
+  <!-- build:js({.tmp,app}) scripts/app.min.js -->
+  <script src="scripts/extentions/modernizr.js"></script>
+  <script src="vendor/jquery/dist/jquery.js"></script>
+  <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="vendor/jquery.easing/jquery.easing.js"></script>
+  <script src="vendor/fastclick/lib/fastclick.js"></script>
+  <script src="vendor/onScreen/jquery.onscreen.js"></script>
+  <script src="vendor/jquery-countTo/jquery.countTo.js"></script>
+  <script src="vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+  <script src="scripts/ui/accordion.js"></script>
+  <script src="scripts/ui/animate.js"></script>
+  <script src="scripts/ui/link-transition.js"></script>
+  <script src="scripts/ui/panel-controls.js"></script>
+  <script src="scripts/ui/preloader.js"></script>
+  <script src="scripts/ui/toggle.js"></script>
+  <script src="scripts/urban-constants.js"></script>
+  <script src="scripts/extentions/lib.js"></script>
+  <!-- endbuild -->
+
+  <!-- page level scripts -->
+  <script src="vendor/d3/d3.min.js"></script>
+  <script src="vendor/rickshaw/rickshaw.min.js"></script>
+  <script src="vendor/flot/jquery.flot.js"></script>
+  <script src="vendor/flot/jquery.flot.resize.js"></script>
+  <script src="vendor/flot/jquery.flot.categories.js"></script>
+  <script src="vendor/flot/jquery.flot.pie.js"></script>
+  <!-- /page level scripts -->
+
+  <!-- initialize page scripts -->
+  <script src="scripts/pages/dashboard.js"></script>
+  <!-- /initialize page scripts -->
+
+</body>
+
+</html>

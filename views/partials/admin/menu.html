@@ -1,0 +1,59 @@
+<div class="sidebar-panel offscreen-left">
+
+  <div class="brand">
+
+    <!-- logo -->
+    <div class="brand-logo">
+      {{#if blogLogo}}
+        <img src="{{blogLogo}}" height="15" alt="">
+      {{else}}
+        <img src="images/logo.png" height="15" alt="">
+      {{/if}}
+    </div>
+    <!-- /logo -->
+
+    <!-- toggle small sidebar menu -->
+    <a href="javascript:;" class="toggle-sidebar hidden-xs hamburger-icon v3" data-toggle="layout-small-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <!-- /toggle small sidebar menu -->
+
+  </div>
+
+  <!-- main navigation -->
+  <nav role="navigation">
+
+    <ul class="nav">
+
+      <!-- dashboard -->
+      <li>
+        <a href="/admin/dashboard">
+          <i class="fa fa-flask"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <!-- /dashboard -->
+      <!-- multimedia -->
+      <li>
+        <a href="/admin/media">
+          <i class='fa fa-image'></i>
+          <span>Multimedia</span>
+        </a>
+      </li>
+      <!-- /multimedia -->
+      <!-- config -->
+      <li>
+        <a href="/admin/settings">
+          <i class='fa fa-gear'></i>
+          <span>Settings</span>
+        </a>
+      </li>
+      <!-- /config -->
+    </ul>
+  </nav>
+  <!-- /main navigation -->
+
+</div>
