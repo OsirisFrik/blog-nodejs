@@ -1,19 +1,14 @@
 'use strict'
 
 const express = require('express');
+const adminCtrl = require('../controllers/adminCtrl');
 
 var route = express.Router();
 
 route.get('/', function (req, res) {
   res.redirect('/admin/dashboard');
 });
-
-route.get('/dashboard', function (req, res) {
-  if (req.user) {
-    res.render('admin/dashboard', {layout: 'admin', title: 'Dashboard'});
-  } else {
-    res.redirect('/login')
-  }
-})
+route.get('/dashboard', adminCtrl.dashboard);
+route.get('/settings', adminCtrl.config);
 
 module.exports = route;

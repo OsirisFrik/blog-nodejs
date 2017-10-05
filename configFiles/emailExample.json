@@ -1,0 +1,7 @@
+{
+  "host": "uri server",
+  "secure": true,
+  "port": 465,
+  "user": "email",
+  "pass": "password"
+}
