@@ -15,7 +15,7 @@ route.get('/', function(req, res, next) {
     res.redirect('/login?backTo=/admin');
   }
 }, function (req, res) {
-  req.redirect('/admin/dashboard');
+  res.redirect('/admin/dashboard');
 });
 route.get('/dashboard', adminCtrl.dashboard);
 route.get('/settings', adminCtrl.config);
