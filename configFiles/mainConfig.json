@@ -1,7 +1,0 @@
-{
-  "mongo_uri": "34.214.176.137",
-  "mongo_port": "27017",
-  "mongo_db": "blog",
-  "mongo_user": "blogAdmin",
-  "mongo_pws": "coco2435"
-}

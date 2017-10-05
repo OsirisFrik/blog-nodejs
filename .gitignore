@@ -1,4 +1,5 @@
 node_modules/*
 bower_components/*
 configFiles/email.json
+configFiles/mainConfig.json
 */**/.DS_Store
