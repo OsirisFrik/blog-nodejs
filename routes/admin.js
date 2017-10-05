@@ -12,7 +12,6 @@ route.get('/', function(req, res, next) {
     req.flash('error', 'No tienes autorización');
     res.redirect('/');
   } else {
-    console.log(req);
     res.redirect('/login?backTo=/admin');
   }
 }, function (req, res) {
