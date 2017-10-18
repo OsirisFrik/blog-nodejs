@@ -16,4 +16,18 @@ adminCtrl.config = function (req, res) {
   })
 }
 
+adminCtrl.mediaview = function (req, res) {
+  res.render('admin/media', {
+    layout: 'admin',
+    title: 'Media'
+  });
+}
+
+adminCtrl.newpost = function (req, res) {
+  res.render('admin/blog/newpost', {
+    layout: 'admin',
+    title: 'New Post'
+  });
+}
+
 module.exports = adminCtrl;

@@ -32,7 +32,7 @@ var sendMailConfirm = function (userData) {
           to: userData.email,
           subject: 'Confirmación de registro.',
           text: 'Hola, gracias por registrarte en OsirisFrik Blog, por favor confirma tu correo electronico.',
-          html: '<a href="http://localhost:3000/confirm/'+hash+'">Link</a>'
+          html: '<a href="http://localhost:3000/confirm?ref='+hash+'">Link</a>'
         };
 
         transporter.sendMail(mailOptions, function(error, info){

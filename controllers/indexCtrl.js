@@ -16,6 +16,7 @@ indexCtrl.registro = function (req, res) {
 }
 
 indexCtrl.login = function (req, res) {
+  console.log(req.query);
   if (req.query.backTo) {
     backTo = req.query.backTo;
   }

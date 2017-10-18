@@ -47,6 +47,10 @@
                   <button class="btn btn-success btn-block btn-lg mb15" type="submit">
                     <span>Sign in</span>
                   </button>
+                  <a class="btn btn-icon btn-sm btn-facebook mr5" href="/login/facebook">
+                    <i class="fa fa-facebook"></i>
+                    Facebook
+                  </a>
                   <p>
                     <a href="/registro">Create an account</a>
                     ·
@@ -81,10 +85,10 @@
     <script src="admin/scripts/extentions/noty-defaults.js"></script>
     <!-- endbuild -->
     {{#if successMsg}}
-    {{{alertMsg successMsg 'success'}}}
+      {{{alertMsg successMsg 'success'}}}
     {{/if}}
     {{#if error}}
-    {{{alertMsg error 'error'}}}
+      {{{alertMsg error 'error'}}}
     {{/if}}
   </body>
 

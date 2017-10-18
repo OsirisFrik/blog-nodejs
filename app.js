@@ -1,5 +1,20 @@
 'use strict'
 
+var open = false;
+var nav = null;
+
+var port = process.env.PORT || 3000;
+
+function getCommands(argv) {
+  for (var i = 0; i < argv.length; i++) {
+    if (argv[i] == '-p' || argv == '--Port') {
+      port = argv[i+1]
+    }
+  }
+}
+
+getCommands(process.argv)
+
 const mongoose = require('mongoose');
 const colors = require('colors');
 const express = require('express');
@@ -15,8 +30,6 @@ const portfinder = require('portfinder');
 const flash = require('connect-flash');
 
 const mainConfig = require('./configFiles/mainConfig.json');
-
-var port = process.env.PORT || 3000;
 
 portfinder.getPort({
   port: port
@@ -34,6 +47,7 @@ const mongoConnect = 'mongodb://' + mainConfig.mongo_user + ':' + mainConfig.mon
 
 const index = require('./routes/index');
 const admin = require('./routes/admin');
+const adminMid = require('./services/adminMid');
 
 // bodyParser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -96,7 +110,7 @@ handlebars.registerHelper('alertMsg', function(message, type) {
 });
 
 app.use('/', index);
-app.use('/admin', admin);
+app.use('/admin', adminMid.adminCheck, admin);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoConnect, {
